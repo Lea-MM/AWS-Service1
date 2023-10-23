@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab1_api_aws"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="AWS S3 and IAM" Height="300" Width="600">
     <Grid>
+        <Button x:Name="btnBucket" 
+            Content="Bucket Level Operations" 
+            HorizontalAlignment="Left" 
+            Margin="20,208,0,0" 
+            VerticalAlignment="Top" 
+            Background="#FF527DF9" 
+            BorderBrush="#FFF8F9FA"
+            Foreground="#FFF8F9FA" 
+            Padding="10,10,10,10" 
+            FontFamily="MS Reference Sans Serif" 
+            FontSize="16" 
+            BorderThickness="5,5,5,5" 
+            ClipToBounds="True" Width="225" Height="50"
+        />
 
+        <Button x:Name="btnObject" 
+            Content="Object Level Operations" 
+            HorizontalAlignment="Left" 
+            Margin="250,208,0,0" 
+            VerticalAlignment="Top" 
+            Background="#FF527DF9" 
+            BorderBrush="#FFF8F9FA"
+            Foreground="#FFF8F9FA" 
+            Padding="10,10,10,10" 
+            FontFamily="MS Reference Sans Serif" 
+            FontSize="16" 
+            BorderThickness="5,5,5,5" 
+            ClipToBounds="True" Width="225" Height="50"
+        />
+
+        <Button x:Name="btnExit" 
+            Content="Exit" 
+            HorizontalAlignment="Left" 
+            Margin="478,208,0,0" 
+            VerticalAlignment="Top" 
+            Background="#FF6F757C" 
+            BorderBrush="#FFF8F9FA"
+            Foreground="#FFF8F9FA" 
+            Padding="10,10,10,10" 
+            FontFamily="MS Reference Sans Serif" 
+            FontSize="16" 
+            BorderThickness="5,5,5,5" 
+            ClipToBounds="True" Width="100" Height="50"
+        />
+        
+        <Image Source="/aws.png" Width="300" Margin="150,-48,150,48" />
     </Grid>
 </Window>
