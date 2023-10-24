@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="aws.png" />
+    <None Remove="aws_cloud-removebg-preview.png" />
+    <None Remove="aws_cloud.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="aws.png" />
+    <Resource Include="aws_cloud-removebg-preview.png" />
+    <Resource Include="aws_cloud.png" />
   </ItemGroup>
 
 </Project>
