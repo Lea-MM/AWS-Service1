@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab1_api_aws"
         mc:Ignorable="d"
-        Title="Bucket Level Operations" Height="450" Width="800">
+        Title="Bucket Level Operations" Height="500" Width="800">
     <Grid>
-        <Label Content="Bucket Name" HorizontalAlignment="Left" Margin="37,58,0,0" VerticalAlignment="Top" FontFamily="MS Reference Sans Serif" FontSize="16" FontWeight="Medium"/>
+        <Label Content="Create New Buckets" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontFamily="MS Reference Sans Serif" FontSize="16" FontWeight="DemiBold"/>
+
+        <Label Content="Bucket Name" HorizontalAlignment="Left" Margin="37,62,0,0" VerticalAlignment="Top" FontFamily="MS Reference Sans Serif" FontSize="16" FontWeight="Medium"/>
 
         <TextBox x:Name="txtbxBucketName" 
+                 Text="{Binding SelectedItem.BucketName, ElementName=dgBuckets}"
                  HorizontalAlignment="Left" 
                  Padding="5,5,5,5" 
                  TextWrapping="Wrap" 
@@ -17,14 +20,14 @@
                  Width="300" 
                  FontSize="14" 
                  FontFamily="MS Reference Sans Serif" 
-                 Margin="164,56,0,0" 
+                 Margin="164,60,0,0" 
                  Height="34"
         />
 
         <Button x:Name="btnCreateBucket" 
             Content="Create Bucket" 
             HorizontalAlignment="Left" 
-            Margin="469,50,0,0" 
+            Margin="469,54,0,0" 
             VerticalAlignment="Top" 
             Background="#FF527DF9" 
             BorderBrush="#FFF8F9FA"
@@ -33,15 +36,24 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="14" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="150" Height="45"
+            ClipToBounds="True" Width="150" Height="45" Click="btnCreateBucket_Click"
         />
 
-        <Image HorizontalAlignment="Left" Height="125" Margin="644,320,0,0" VerticalAlignment="Top" Width="133" Source="/aws_cloud.png" RenderTransformOrigin="0.295,0.512"/>
+        <DataGrid x:Name="dgBuckets" 
+                  d:ItemsSource="{d:SampleData ItemCount=2}"
+                  Margin="37,113,31,117" 
+                  RowHeight="30" 
+                  ColumnWidth="*"
+                  Background="Azure"
+                  VerticalScrollBarVisibility="Visible"
+                  SelectionMode="Single" />
+
+        <Image HorizontalAlignment="Left" Height="125" Margin="636,338,0,0" VerticalAlignment="Top" Width="133" Source="/aws_cloud.png" RenderTransformOrigin="0.295,0.512"/>
 
         <Button x:Name="btnDeleteBucket" 
             Content="Delete Bucket" 
             HorizontalAlignment="Left" 
-            Margin="619,50,0,0" 
+            Margin="619,54,0,0" 
             VerticalAlignment="Top" 
             Background="#FF6F757C" 
             BorderBrush="#FFF8F9FA"
@@ -50,14 +62,13 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="14" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="150" Height="45"
+            ClipToBounds="True" Width="150" Height="45" Click="btnDeleteBucket_Click"
         />
-        <DataGrid x:Name="dgBuckets" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="37,132,31,97" Padding="5,5,5,5" />
 
         <Button x:Name="btnBackToMain" 
             Content="Back to Main Window" 
             HorizontalAlignment="Left" 
-            Margin="31,360,0,0" 
+            Margin="31,370,0,0" 
             VerticalAlignment="Top" 
             Background="#ebc239" 
             BorderBrush="#FFF8F9FA"
@@ -66,9 +77,20 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="14" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="250" Height="45"
+            ClipToBounds="True" Width="250" Height="45" Click="btnBackToMain_Click"
         />
 
-
+        <Button x:Name="btnUrl"
+            Content="Lea-MM 2023" 
+            HorizontalAlignment="Center" 
+            Margin="0,436,0,0"
+            VerticalAlignment="Top" 
+            Background="#65a0b6" 
+            BorderBrush="#FFF8F9FA"
+            Foreground="#FFF8F9FA" 
+            FontFamily="MS Reference Sans Serif" 
+            FontSize="10" 
+            ClipToBounds="True" Width="810" Height="30" Click="btnUrl_Click"
+        />
     </Grid>
 </Window>

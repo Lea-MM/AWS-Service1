@@ -9,13 +9,15 @@
 
   <ItemGroup>
     <None Remove="aws.png" />
-    <None Remove="aws_cloud-removebg-preview.png" />
     <None Remove="aws_cloud.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.7.205.16" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="aws.png" />
-    <Resource Include="aws_cloud-removebg-preview.png" />
     <Resource Include="aws_cloud.png" />
   </ItemGroup>
 

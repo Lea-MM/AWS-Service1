@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab1_api_aws"
         mc:Ignorable="d"
-        Title="AWS S3 and IAM" Height="300" Width="600">
+        Title="AWS S3 and IAM" Height="350" Width="600">
     <Grid>
         <Button x:Name="btnBucket" 
             Content="Bucket Level Operations" 
             HorizontalAlignment="Left" 
-            Margin="20,208,0,0" 
+            Margin="20,195,0,0" 
             VerticalAlignment="Top" 
             Background="#FF527DF9" 
             BorderBrush="#FFF8F9FA"
@@ -19,13 +19,13 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="16" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="225" Height="50"
+            ClipToBounds="True" Width="225" Height="50" Click="btnBucket_Click"
         />
 
         <Button x:Name="btnObject" 
             Content="Object Level Operations" 
             HorizontalAlignment="Left" 
-            Margin="250,208,0,0" 
+            Margin="250,195,0,0" 
             VerticalAlignment="Top" 
             Background="#FF527DF9" 
             BorderBrush="#FFF8F9FA"
@@ -34,13 +34,13 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="16" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="225" Height="50"
+            ClipToBounds="True" Width="225" Height="50" Click="btnObject_Click"
         />
 
         <Button x:Name="btnExit" 
             Content="Exit" 
             HorizontalAlignment="Left" 
-            Margin="478,208,0,0" 
+            Margin="478,195,0,0" 
             VerticalAlignment="Top" 
             Background="#FF6F757C" 
             BorderBrush="#FFF8F9FA"
@@ -49,9 +49,22 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="16" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="100" Height="50"
+            ClipToBounds="True" Width="100" Height="50" Click="btnExit_Click"
         />
-        
-        <Image Source="/aws.png" Width="300" Margin="150,-48,150,48" />
+
+        <Image Source="/aws.png" Margin="132,-65,132,65" />
+
+        <Button
+            Content="Lea-MM 2023" 
+            HorizontalAlignment="Center" 
+            Margin="0,286,0,0"
+            VerticalAlignment="Top" 
+            Background="#65a0b6" 
+            BorderBrush="#FFF8F9FA"
+            Foreground="#FFF8F9FA" 
+            FontFamily="MS Reference Sans Serif" 
+            FontSize="10" 
+            ClipToBounds="True" Width="610" Height="30"
+        />
     </Grid>
 </Window>

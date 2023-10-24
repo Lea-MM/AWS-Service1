@@ -24,5 +24,24 @@ namespace lab1_api_aws
         {
             InitializeComponent();
         }
+
+        private void btnBucket_Click(object sender, RoutedEventArgs e)
+        {
+            BucketWindow bucketWindow = new BucketWindow();
+            this.Visibility = Visibility.Visible;
+            bucketWindow.Show();
+        }
+
+        private void btnObject_Click(object sender, RoutedEventArgs e)
+        {
+            ObjectWindow objectWindow = new ObjectWindow();
+            this.Visibility = Visibility.Visible;
+            objectWindow.Show();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
