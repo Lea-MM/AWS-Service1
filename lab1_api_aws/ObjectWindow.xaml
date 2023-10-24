@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab1_api_aws"
         mc:Ignorable="d"
-        Title="Object Level Operations" Height="580" Width="800">
+        Title="Object Level Operations" Height="599" Width="800">
     <Grid>
         <Label Content="Upload Object to S3 Bucket Window" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontFamily="MS Reference Sans Serif" FontSize="16" FontWeight="DemiBold"/>
 
         <Label Content="Bucket Name" HorizontalAlignment="Left" Margin="37,61,0,0" VerticalAlignment="Top" FontFamily="MS Reference Sans Serif" FontSize="16" FontWeight="Medium"/>
 
-        <ComboBox x:Name="cbBucketNames" HorizontalAlignment="Left" Margin="164,59,0,0" VerticalAlignment="Top" Width="600" FontSize="14" FontFamily="MS Reference Sans Serif" Height="34" Padding="5,5,5,5" />
+        <ComboBox x:Name="cbBucketNames" HorizontalAlignment="Left" Margin="164,59,0,0" VerticalAlignment="Top" Width="600" FontSize="14" FontFamily="MS Reference Sans Serif" Height="34" Padding="5,5,5,5" SelectionChanged="cbBucketNames_SelectionChanged" SelectedValuePath="Content" />
 
         <Label Content="Object Path" HorizontalAlignment="Left" Margin="37,113,0,0" VerticalAlignment="Top" FontFamily="MS Reference Sans Serif" FontSize="16" FontWeight="Medium"/>
 
-        <TextBox x:Name="txtbxBucketName" 
+        <TextBox x:Name="txtbxObjectName" 
              HorizontalAlignment="Left" 
              Padding="5,5,5,5" 
              TextWrapping="Wrap" 
@@ -39,7 +39,7 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="14" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="150" Height="45"
+            ClipToBounds="True" Width="150" Height="45" Click="btnBrowse_Click"
         />
 
         <Button x:Name="btnUpload" 
@@ -54,10 +54,17 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="14" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="150" Height="45"
+            ClipToBounds="True" Width="150" Height="45" Click="btnUpload_Click"
         />
 
-        <DataGrid x:Name="dgBuckets" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="37,161,36,109" Padding="5,5,5,5"/>
+        <DataGrid x:Name="dgObjects" 
+                  d:ItemsSource="{d:SampleData ItemCount=2}" 
+                  Margin="37,161,36,109" 
+                  RowHeight="30" 
+                  ColumnWidth="*"
+                  Background="Azure"
+                  VerticalScrollBarVisibility="Visible"
+                  SelectionMode="Single"/>
 
         <Image HorizontalAlignment="Left" Height="125" Margin="643,434,0,0" VerticalAlignment="Top" Width="133" Source="/aws_cloud.png"/>
 
@@ -73,7 +80,7 @@
             FontFamily="MS Reference Sans Serif" 
             FontSize="14" 
             BorderThickness="5,5,5,5" 
-            ClipToBounds="True" Width="250" Height="45"
+            ClipToBounds="True" Width="250" Height="45" Click="btnBackToMain_Click"
         />
 
         <Button
@@ -86,7 +93,7 @@
             Foreground="#FFF8F9FA" 
             FontFamily="MS Reference Sans Serif" 
             FontSize="10" 
-            ClipToBounds="True" Width="810" Height="30"
+            ClipToBounds="True" Width="810" Height="30" Click="Button_Click"
         />
     </Grid>
 </Window>

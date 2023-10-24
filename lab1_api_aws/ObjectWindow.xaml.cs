@@ -3,7 +3,9 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,29 +25,73 @@ namespace lab1_api_aws
     /// </summary>
     public partial class ObjectWindow : Window
     {
-        // Create an instance of the AmazonS3Client with AWS credentials and region
-        private AmazonS3Client s3Client = new AmazonS3Client(ConfigurationManager.AppSettings["accessId"], ConfigurationManager.AppSettings["secretKey"], RegionEndpoint.CACentral1);
+        AwsS3Operations operations = new AwsS3Operations();
 
         public ObjectWindow()
         {
             InitializeComponent();
-            LoadCollectionData();
+            operations.LoadBucketDataToComboBox(cbBucketNames);
         }
 
-        private async void LoadCollectionData()
+        private void cbBucketNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListBucketsResponse bucketList = await s3Client.ListBucketsAsync();
+            var selectedComboBoxValue = cbBucketNames.SelectedItem.ToString();
 
-            foreach (S3Bucket s3Bucket in bucketList.Buckets)
+            if (selectedComboBoxValue != null)
             {
-                cbBucketNames.(new Bucket
-                {
-                    BucketName = s3Bucket.BucketName,
-                    CreationDate = s3Bucket.CreationDate
-                });
+                operations.LoadObjectData(selectedComboBoxValue, dgObjects);
             }
+        }
 
-            dgBuckets.ItemsSource = buckets;
+        private void btnBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dialog.FileName;
+                txtbxObjectName.Text = filename;
+            }
+        }
+
+        private void btnUpload_Click(object sender, RoutedEventArgs e)
+        {
+            var bucketName = cbBucketNames.SelectedItem.ToString();
+            var objectName = txtbxObjectName.Text;
+
+            try
+            {
+                if (bucketName != null && objectName != null)
+                {
+                    operations.UploadObjectData(bucketName, dgObjects, objectName, S3CannedACL.BucketOwnerFullControl);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please select a bucket and/or a file to upload and try again.");
+            }
+            finally
+            {
+                txtbxObjectName.Text = "";
+            }
+        }
+
+        private void btnBackToMain_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start("cmd", $"/c start {"https://github.com/Lea-MM/AWS-Service1"}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while trying to open the URL: {ex.Message}");
+            }
         }
     }
 }

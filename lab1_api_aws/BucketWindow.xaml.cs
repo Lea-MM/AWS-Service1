@@ -25,31 +25,12 @@ namespace lab1_api_aws
     /// </summary>
     public partial class BucketWindow : Window
     {
-        // Create an instance of the AmazonS3Client with AWS credentials and region
-        private AmazonS3Client s3Client = new AmazonS3Client(ConfigurationManager.AppSettings["accessId"], ConfigurationManager.AppSettings["secretKey"], RegionEndpoint.CACentral1);
-
+        AwsS3Operations operations = new AwsS3Operations();
+        
         public BucketWindow()
         {
             InitializeComponent();
-            LoadCollectionData();
-        }
-
-        private async void LoadCollectionData()
-        {
-            List<Bucket> buckets = new List<Bucket>();
-
-            ListBucketsResponse bucketList = await s3Client.ListBucketsAsync();
-
-            foreach (S3Bucket s3Bucket in bucketList.Buckets)
-            {
-                buckets.Add(new Bucket
-                {
-                    BucketName = s3Bucket.BucketName,
-                    CreationDate = s3Bucket.CreationDate
-                });
-            }
-
-            dgBuckets.ItemsSource = buckets;
+            operations.LoadCollectionDataToGrid(dgBuckets);
         }
 
         private void btnCreateBucket_Click(object sender, RoutedEventArgs e)
@@ -57,21 +38,19 @@ namespace lab1_api_aws
             try
             {
                 string bucketName = txtbxBucketName.Text;
-                s3Client.PutBucketAsync(new PutBucketRequest
-                {
-                    BucketName = bucketName,
-                    UseClientRegion = true,
-                }).Wait();
 
-                LoadCollectionData();
-            }
-            catch (AmazonS3Exception ex)
-            {
-                MessageBox.Show("Error creating bucket: " + ex.Message);
+                if (string.IsNullOrEmpty(bucketName))
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    operations.CreateBucket(bucketName, dgBuckets);
+                }
             }
             catch (Exception)
             {
-                MessageBox.Show("Please specify a bucket name and try again.");
+                MessageBox.Show("Please check the bucket name and try again.");
             }
         }
 
@@ -79,13 +58,8 @@ namespace lab1_api_aws
         {
             try
             {
-                string bucketToDelete = txtbxBucketName.Text != null? txtbxBucketName.Text : throw new Exception();
-                s3Client.DeleteBucketAsync(bucketToDelete).Wait();
-                LoadCollectionData();
-            }
-            catch (AmazonS3Exception ex)
-            {
-                MessageBox.Show("Error deleting bucket: " + ex.Message);
+                string bucketToDelete = txtbxBucketName.Text != null ? txtbxBucketName.Text : throw new Exception();
+                operations.DeleteBucket(bucketToDelete, dgBuckets);
             }
             catch (Exception)
             {
@@ -102,7 +76,7 @@ namespace lab1_api_aws
         {
             try
             {
-                Process.Start("https://github.com/Lea-MM/AWS-Service1");
+                Process.Start("cmd", $"/c start {"https://github.com/Lea-MM/AWS-Service1"}");
             }
             catch (Exception ex)
             {

@@ -64,7 +64,7 @@
             Foreground="#FFF8F9FA" 
             FontFamily="MS Reference Sans Serif" 
             FontSize="10" 
-            ClipToBounds="True" Width="610" Height="30"
+            ClipToBounds="True" Width="610" Height="30" Click="Button_Click"
         />
     </Grid>
 </Window>

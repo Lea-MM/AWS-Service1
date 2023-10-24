@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,18 @@ namespace lab1_api_aws
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start("cmd", $"/c start {"https://github.com/Lea-MM/AWS-Service1"}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while trying to open the URL: {ex.Message}");
+            }
         }
     }
 }
